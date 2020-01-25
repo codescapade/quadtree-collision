@@ -1,0 +1,4 @@
+[submodule "Kha"]
+	path = Kha
+	url = https://github.com/codescapade/Kha.git
+	branch = blazar
