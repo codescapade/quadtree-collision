@@ -11,7 +11,7 @@
 		<canvas id="khanvas" width="800" height="600" tabindex="-1"></canvas>
 		<div class="explanation">
 			<p>
-				Controls:<br/>
+				Controls: <span class="small-text">(Make sure you click in the canvas to focus it first)</span><br/>
 				<ul>
 					<li>Hold the mouse button down in the world to create boxes.</li>
 					<li>Press <b>G</b> to show/hide the grid.</li>
@@ -24,7 +24,7 @@
 			<p>
 				This is my implementation of a quadtree for collision detection. It is written in
 				 <a href="https://www.haxe.org" target="_blank">Haxe</a> and uses <a href="https://github.com/Kode/Kha" target="_blank">Kha</a> to visualize it.
-				When you use a quadtree it can drastically improve the amount of checks you have to do to check all boxes for a collision as you can above.
+				When you use a quadtree it can drastically improve the amount of checks you have to do to check all boxes for a collision as you see can above.
 				 The quadtree divides the world into a grid and with the grid it can retrieve which boxes are close to each other.
 				 That way you only have to loop over a few neighboring boxes to check for collisions instead of all of them.<br/>
 			</p>
