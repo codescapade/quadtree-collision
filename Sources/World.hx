@@ -124,37 +124,7 @@ class World {
       return;
     }
 
-    // Reset the quadtree.
-    tree.clear();
-    for (box in boxes) {
-      box.update(dt);
-      box.collided = false;
-      box.selected = false;
-
-      // Add the box to the tree.
-      tree.insert(box);
-    }
-
-    calculations = 0;
-    collisions = 0;
-    for (box in boxes) {
-      // Clear the collision list.
-      while (collisionList.length > 0) {
-        collisionList.pop();
-      }
-
-      // Get the possible collisions for this box from the tree.
-      tree.getShapeList(box, collisionList);
-
-      // Check if there are actual collisions.
-      for (item in collisionList) {
-        calculations++;
-        if (box.bounds.intersects(item.bounds)) {
-          box.collided = true;
-          collisions++;
-        }
-      }
-    }
+    checkCollisions(dt);
   }
 
   /**
@@ -235,6 +205,7 @@ class World {
     while(boxes.length > 0) {
       boxes.pop();
     }
+    tree.clear();
   }
 
   /**
@@ -256,6 +227,40 @@ class World {
     // Create the box and add it to the boxes.
     var box = new Box(x, y, width, height, xVel, yVel, bounds, boxImage);
     boxes.push(box);
+  }
+
+  function checkCollisions(dt: Float): Void {
+    // Reset the quadtree.
+    tree.clear();
+    for (box in boxes) {
+      box.update(dt);
+      box.collided = false;
+      box.selected = false;
+
+      // Add the box to the tree.
+      tree.insert(box);
+    }
+
+    calculations = 0;
+    collisions = 0;
+    for (box in boxes) {
+      // Clear the collision list.
+      while (collisionList.length > 0) {
+        collisionList.pop();
+      }
+
+      // Get the possible collisions for this box from the tree.
+      tree.getShapeList(box, collisionList);
+
+      // Check if there are actual collisions.
+      for (item in collisionList) {
+        calculations++;
+        if (box.bounds.intersects(item.bounds)) {
+          box.collided = true;
+          collisions++;
+        }
+      }
+    }
   }
 
   /**
@@ -295,8 +300,13 @@ class World {
 
     buffer.drawString('FPS: ${fps}', 20, 10);
     buffer.drawString('Boxes: ${boxes.length}', 20, 40);
-    buffer.drawString('Collision checks', 330, 10);
     buffer.drawString('Boxes selected: ${boxesSelected}', 20, 70);
+    buffer.drawString('Collision checks', 330, 10);
+
+    if (paused) {
+      buffer.drawString('Paused', 330, 70);
+    }
+    
     buffer.drawString('With quadtree:', 500, 10);
     buffer.drawString('${calculations}', 670, 10);
     buffer.drawString('Without quadtree:', 500, 40);

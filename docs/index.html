@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Quadtree Collision</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="header">Quadtree Collision detection in haxe</div>
+		<canvas id="khanvas" width="800" height="600" tabindex="-1"></canvas>
+		<div class="explanation">
+			<p>
+				Controls:<br/>
+				<ul>
+					<li>Hold the mouse button down in the world to create boxes.</li>
+					<li>Press <b>G</b> to show/hide the grid.</li>
+					<li>Press <b>R</b> to reset the world.</li>
+					<li>Press <b>P</b> to toggle pause.</li>
+					<li>When paused you can click on a box to highlight the boxes that will be checked for collision with that box.</li>
+				</ul>
+				The boxes are red when they collide with each other and green if selected.
+			</p>
+			<p>
+				This is my implementation of a quadtree for collision detection. It is written in
+				 <a href="https://www.haxe.org" target="_blank">Haxe</a> and uses <a href="https://github.com/Kode/Kha" target="_blank">Kha</a> to visualize it.
+				When you use a quadtree it can drastically improve the amount of checks you have to do to check all boxes for a collision as you can above.
+				 The quadtree divides the world into a grid and with the grid it can retrieve which boxes are close to each other.
+				 That way you only have to loop over a few neighboring boxes to check for collisions instead of all of them.<br/>
+			</p>
+			<p>You can find the source <a href="https://github.com/codescapade/quadtree-collision" target="_blank">here</a>.</p>
+		</div>
+	</div>
+	
+	<script src="kha.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.container {
+  margin: 0 auto;
+  width: 900px;
+}
+.header {
+  text-align: center;
+  font-size: 32px;
+}
+
+#khanvas {
+  margin: 20px auto;
+  display: block;
+}
+
+.explanation {
+  font-size: 18px;
+}
