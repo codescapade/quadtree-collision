@@ -253,11 +253,8 @@ class Quad {
     // Check each child node to see if the shape is in it partially.
     for (i in 0...nodes.length) {
       var bounds = nodes[i].bounds;
-      // Check each corner of the shape to see if it is inside child quad bounds.
-      if (bounds.hasPoint(shape.x, shape.y) ||
-          bounds.hasPoint(shape.x + shape.width, shape.y) ||
-          bounds.hasPoint(shape.x, shape.y + shape.height) ||
-          bounds.hasPoint(shape.x + shape.width, shape.y + shape.height)) {
+      // If the shape intersects with the node bounds add the node index to the list.
+      if (bounds.intersects(shape)) {
         list.push(i);
       }
     }
